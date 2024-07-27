@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Night_Mode_Light</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      #body {
+        transition: 0.5s;
+      }
+
+      #mode_btn,
+      #light_btn {
+        margin: 20px;
+        width: 300px;
+        padding: 25px 45px;
+        background-color: red;
+        color: white;
+        font-size: 20px;
+        border-radius: 10px;
+        border: none;
+        transition: 0.3s;
+      }
+
+      #light_btn {
+        display: none;
+      }
+
+      #light_container {
+        display: none;
+        justify-content: center;
+        align-items: center;
+        height: 500px;
+        width: 100%;
+        position: relative;
+      }
+
+      #light {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        filter: blur(40px);
+        box-shadow: 0 0 50px red;
+        background-color: red;
+      }
+      #light2 {
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        background-color: red;
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body id="body">
+    <div>
+      <button id="mode_btn">Dark Mode</button>
+      <button id="light_btn">Turn the light ON</button>
+      <div id="light_container">
+        <div id="light"></div>
+        <div id="light2"></div>
+      </div>
+    </div>
+
+    <!-- JavaScript Code -->
+    <script>
+      let modeButton = document.getElementById("mode_btn");
+      let lightButton = document.getElementById("light_btn");
+      let light = document.getElementById("light_container");
+      let htmlBody = document.getElementById("body");
+
+      let mode = "dark";
+      let isLight = "on";
+
+      modeButton.addEventListener(
+        "click",
+        function () {
+          if (mode === "dark") {
+            htmlBody.style.backgroundColor = "#000000";
+            modeButton.innerHTML = "Light Mode";
+            lightButton.style.display = "inline";
+            mode = "light";
+          } else {
+            htmlBody.style.backgroundColor = "#ffffff";
+            modeButton.innerHTML = "Dark Mode";
+            lightButton.style.display = "none";
+            mode = "dark";
+            light.style.display = "none";
+            lightButton.innerHTML = "Turn the light ON";
+            isLight = "on";
+          }
+        },
+        true
+      );
+
+      lightButton.addEventListener("click", function () {
+        if (isLight === "on") {
+          light.style.display = "flex";
+          lightButton.innerHTML = "Turn the light OFF";
+          isLight = "off";
+        } else {
+          light.style.display = "none";
+          lightButton.innerHTML = "Turn the light ON";
+          isLight = "on";
+        }
+      });
+    </script>
+  </body>
+</html>
